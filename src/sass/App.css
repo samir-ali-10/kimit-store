@@ -1,0 +1,128 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+.rtl {
+  direction: rtl;
+}
+
+.App.light {
+  background-color: white;
+  color: black;
+}
+
+.nav_bar {
+  padding: 15px;
+}
+.nav_bar nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+}
+.nav_bar nav .menuIcon {
+  cursor: pointer;
+  display: none;
+}
+.nav_bar nav .menuIcon img {
+  width: 50px;
+}
+.nav_bar nav ul {
+  list-style: none;
+  display: flex;
+}
+.nav_bar nav ul.active {
+  display: flex !important;
+  flex-direction: column;
+  position: absolute;
+  bottom: -230px;
+  left: 70%;
+  background-color: black;
+  z-index: 999;
+  padding: 10px;
+}
+.nav_bar nav ul.active li {
+  margin-bottom: 10px;
+  border-bottom: 1px solid white;
+  padding-bottom: 10px;
+}
+.nav_bar nav ul.active li a {
+  color: white;
+}
+.nav_bar nav ul li {
+  margin-right: 15px;
+}
+.nav_bar nav ul li a {
+  text-decoration: none;
+  color: white;
+}
+.nav_bar nav svg {
+  color: white;
+  cursor: pointer;
+}
+
+.products_container {
+  padding: 30px;
+  padding-top: 0;
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(min(350px, 100%), 1fr));
+  gap: 20px;
+}
+
+.wrapping .image {
+  border-bottom: none;
+}
+.wrapping .image img {
+  width: 100%;
+  height: 100vh;
+}
+.wrapping .content .heading .title h3 {
+  font-size: 2.5rem;
+}
+.wrapping .content .heading .title p {
+  font-size: 1.4rem;
+  color: #2f2f2f;
+  font-weight: 600;
+}
+.wrapping .content .heading .rating {
+  text-align: center;
+}
+.wrapping .content .heading .rating > * {
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.category {
+  padding: 0 20px;
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(min(100px, 100%), 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 550px) {
+  .nav_bar nav ul {
+    display: none !important;
+  }
+  .nav_bar nav .menuIcon {
+    display: block;
+  }
+  .wrapping .content .heading {
+    flex-direction: column;
+  }
+}/*# sourceMappingURL=App.css.map */
