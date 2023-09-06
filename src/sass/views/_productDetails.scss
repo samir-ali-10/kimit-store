@@ -1,0 +1,41 @@
+.wrapping {
+    .image {
+        border-bottom: none;
+
+        img {
+            width: 100%;
+            height: 100vh;
+        }
+    }
+
+    .content {
+        .heading {
+            .title {
+                h3 {
+                    font-size: 2.5rem;
+                }
+
+                p {
+                    font-size: 1.4rem;
+                    color: #2f2f2f;
+                    font-weight: 600;
+                }
+            }
+
+            .rating {
+                text-align: center;
+
+                >* {
+                    padding: 10px 20px;
+                    background-color: black;
+                    color: white;
+                    border-radius: 10px;
+                    -webkit-border-radius: 10px;
+                    -moz-border-radius: 10px;
+                    -ms-border-radius: 10px;
+                    -o-border-radius: 10px;
+                }
+            }
+        }
+    }
+}

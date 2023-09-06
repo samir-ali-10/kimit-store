@@ -4,5 +4,15 @@
     "about": "عنا",
     "cart": "السله",
     "available_stock": "المنتجات المتوفرة",
-    "add_product": "اضافة منتج جديد"
+    "add_product": "اضافة منتج جديد",
+    "select_your_perfect_product": "اختر احسن منتج لك",
+    "delete" : "امسح",
+    "edit_product": "تعديل المنتج",
+    "product_name": "اسم المنتج",
+    "product_number": "رقم المنتج",
+    "product_title": "عنوان المنتج",
+    "product_price": "سعر المنتج",
+    "product_desc": "وصف المنتج",
+    "submit": "إرسال",
+    "clear": "مسح"
 }

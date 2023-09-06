@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { useTranslation } from 'react-i18next';
 
 export default function EditProduct() {
+
+    let { t } = useTranslation();
 
     let [product, setProduct] = useState({}),
         [title, setTitle] = useState(),
@@ -69,28 +72,34 @@ export default function EditProduct() {
     }
 
     return (
-        <div className='edit_products p-5 pt-3'>
-            <h1 className='mb-3'>Edit Product</h1>
-            <h4 className='mb-3'>Product Name: {product.title}</h4>
-            <h4 className='mb-3'>Product Number: {product.id}</h4>
+        <div className='edit_products p-5'>
+            <div className="heading d-flex justify-content-between align-items-center">
+                <h1 className='mb-3 bg-info'>{t("edit_product")}</h1>
+                <div className="product_info d-flex">
+                    <h4 className='mb-3 bg-info'>{t("product_name")}: {product.title}</h4>
+                    <h4 className='mb-3 bg-info'>{t("product_number")}: {product.id}</h4>
+                </div>
+            </div>
             <Form onSubmit={(e) => handleEditProduct(e)}>
+                <div className="starter d-flex">
+                    <Form.Group className="mb-3 w-50">
+                        <Form.Label className='bg-dark mb-3'>{t("product_title")}</Form.Label>
+                        <Form.Control type="text" value={title} name='title' onChange={handleChange} />
+                    </Form.Group>
+                    <Form.Group className="mb-3 w-50">
+                        <Form.Label className='bg-dark mb-3'>{t("product_price")}</Form.Label>
+                        <Form.Control type="number" value={price} name='price' onChange={handleChange} />
+                    </Form.Group>
+                </div>
                 <Form.Group className="mb-3">
-                    <Form.Label>Product Title</Form.Label>
-                    <Form.Control type="text" value={title} name='title' onChange={handleChange} />
-                </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label>Product Price</Form.Label>
-                    <Form.Control type="number" value={price} name='price' onChange={handleChange} />
-                </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label>Product Description</Form.Label>
+                    <Form.Label className='bg-dark mb-3'>{t("product_desc")}</Form.Label>
                     <Form.Control as="textarea" value={description} rows={3} name='description' onChange={handleChange} />
                 </Form.Group>
-                <Button className='me-3' variant="primary" type="submit">
-                    Submit
+                <Button className='me-3 text-white' variant="info" type="submit">
+                    {t("submit")}
                 </Button>
-                <Button variant="primary" type="reset" onClick={clearFields}>
-                    Clear
+                <Button className='me-3' variant="dark" type="reset" onClick={clearFields}>
+                    {t("clear")}
                 </Button>
             </Form>
         </div>

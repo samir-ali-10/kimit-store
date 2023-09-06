@@ -1,0 +1,68 @@
+.App.light {
+    *:not(.carousel) {
+        background-color: white !important;
+        color: black !important;
+    }
+
+    .nav_bar {
+        background-color: #eee !important;
+
+        * {
+
+            background-color: #eee !important;
+        }
+    }
+
+
+    .products_container {
+        .product_card {
+            .card-body {
+                background-color: #eee !important;
+
+                * {
+                    background-color: #eee !important;
+                }
+            }
+
+            .image {
+
+                .actions {
+                    background-color: #777 !important;
+                }
+            }
+        }
+    }
+
+    .products {
+        .title_product {
+            .info {
+                background-color: transparent !important;
+
+                *:not(button) {
+                    background-color: transparent !important;
+
+                }
+            }
+        }
+
+        .category {
+            button {
+                border: 1px solid black;
+            }
+        }
+    }
+
+    .wrapping {
+        .content {
+            .heading {
+                .rating {
+                    * {
+                        border: 1px solid black;
+                    }
+                }
+            }
+        }
+    }
+
+
+}

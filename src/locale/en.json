@@ -4,5 +4,15 @@
     "about": "About",
     "cart": "Cart",
     "available_stock": "Available Stock",
-    "add_product": "Add Product"
+    "add_product": "Add Product",
+    "select_your_perfect_product": "Select Your Perfect Product",
+    "delete" : "Delete",
+    "edit_product": "Edit Product",
+    "product_name": "Product Name",
+    "product_number": "Product Number",
+    "product_title": "Product Title",
+    "product_price": "Product Price",
+    "product_desc": "Product Description",
+    "submit": "Submit",
+    "clear": "Clear"
 }

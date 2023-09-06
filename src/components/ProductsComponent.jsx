@@ -1,7 +1,9 @@
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Swal from 'sweetalert2'
 
 export default function ProductsComponent({ products, getProducts }) {
@@ -12,6 +14,8 @@ export default function ProductsComponent({ products, getProducts }) {
     let [items, setItems] = useState([]);
 
     let [validation, setValidation] = useState([]);
+
+    let [disabled, setDisabled] = useState(false);
 
     let deleteProduct = (product) => {
         Swal.fire({
@@ -29,20 +33,6 @@ export default function ProductsComponent({ products, getProducts }) {
     }
 
 
-    // async function postData(product) {
-    //     let response = await fetch(`http://localhost:1111/products`, {
-    //         method: 'PUT',
-    //         headers: {
-    //             'Content-type': 'application/json; charset=UTF-8'
-    //         },
-    //         body: JSON.stringify({
-    //             ...product,
-    //             inCart: true
-    //         })
-    //     })
-    //     return response.json();
-
-    // }
     async function postDataInCart(product) {
         let response = await fetch(`http://localhost:1111/cart`, {
             method: 'POST',
@@ -72,34 +62,28 @@ export default function ProductsComponent({ products, getProducts }) {
         getItem();
     }, [])
 
-    let click = () => {
-        console.log(items);
-    }
-
-
     return (
-        <div className='products_container'>
+        <div className='products_container ps-5 pe-5'>
             {
                 products.map((product) =>
                     <Card key={product.id} className='product_card mt-4'>
-                        <Card.Img variant="top" loading='lazy' src={product.thumbnail} />
-                        <Card.Body className='bg-dark'>
-                            <Card.Title className='text-white'>{product.title}</Card.Title>
-                            <Card.Text className='text-white'>
-                                {product.price} $
+                        <div className="image">
+                            <FontAwesomeIcon className='favorite_icon text-info' icon={faHeart} />
+                            <Card.Img variant="top" loading='lazy' src={product.thumbnail} />
+                            <div className="actions">
+                                <Link to={`./edit/${[product.id]}`} className='btn btn-light me-3'>Edit</Link>
+                                <Button className='btn btn-light me-3' onClick={() => deleteProduct(product)}>Delete</Button>
+                                <Button className='btn btn-light me-3' onClick={() => {
+                                    postDataInCart(product)
+                                }}>Send item to cart</Button>
+                            </div>
+                        </div>
+                        <Card.Body className='card_body'>
+                            <NavLink className="text-dark" to={`./${[product.id]}`}><Card.Title>{product.title}</Card.Title></NavLink>
+                            <Card.Text>
+                                $ {product.price}
                             </Card.Text>
                         </Card.Body>
-                        <Card.Footer className='bg-dark'>
-                            <Link to={`./${[product.id]}`} className='btn btn-light me-3'>Show More...</Link>
-                            <Link to={`./edit/${[products.id]}`} className='btn btn-success me-3'>Edit</Link>
-                            <Button className='btn btn-danger me-3' onClick={() => deleteProduct(product)}>Delete</Button>
-                            {
-                                product.inCart
-                                    ? <div style={{ "color": "#FFF" }}>Added to cart</div>
-                                    : <Button className='btn btn-secondary mt-3' onClick={() => postDataInCart(product)}>Send item to cart</Button>
-                            }
-                            <button onClick={click}>click</button>
-                        </Card.Footer>
                     </Card>
                 )
             }

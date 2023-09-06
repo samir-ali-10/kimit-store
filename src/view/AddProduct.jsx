@@ -51,7 +51,7 @@ export default function AddProduct() {
     }
 
     return (
-        <div className='add_new_product m-4 p-4 mt-1'>
+        <div className='add_new_product m-4 mt-0 p-4'>
             <h2 className='title mb-5'>Add New Product</h2>
             <Form onSubmit={(e) => handleAddProduct(e)}>
                 <Form.Group className="mb-3">
