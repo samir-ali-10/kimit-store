@@ -6,15 +6,18 @@ import { BrowserRouter } from 'react-router-dom';
 import ThemeProvider from './context/ThemeContext';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import CounterProvider from './context/CartItemCounter';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter >
       <ThemeProvider>
-        <Provider store={store}>
-          <App />
-        </Provider>
+        <CounterProvider>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </CounterProvider>
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>

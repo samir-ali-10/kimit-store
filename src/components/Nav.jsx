@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import menuIcon from "../imgs/hamburger-menu-icon-clipart-3.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSun, faLanguage, faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import { faSun, faLanguage, faCartShopping, faX } from '@fortawesome/free-solid-svg-icons'
 import { ThemeContext } from '../context/ThemeContext';
 import { useTranslation } from 'react-i18next';
 import i18n from "i18next";
@@ -57,7 +57,7 @@ export default function Nav() {
 
     useEffect(() => {
         getCartItems();
-    }, [items])
+    }, [])
 
     return (
 
@@ -76,6 +76,9 @@ export default function Nav() {
                     </li>
                     <li>
                         <NavLink to="/addProduct">{t("add_product")}</NavLink>
+                    </li>
+                    <li>
+                        <button onClick={menuActive} className='bg-info'><FontAwesomeIcon className='text-white' icon={faX} /></button>
                     </li>
                 </ul>
                 <div className="icons d-flex align-items-center">

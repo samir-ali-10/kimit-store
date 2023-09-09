@@ -23,6 +23,9 @@
                 font-size: 1.4rem;
                 cursor: pointer;
                 background-color: transparent !important;
+                // &.solid {
+                //     display: none;
+                // }
             }
 
             img {
@@ -46,6 +49,11 @@
                 -moz-transition: .3s;
                 -ms-transition: .3s;
                 -o-transition: .3s;
+
+                button.disabled {
+                    cursor: not-allowed;
+                    pointer-events: none;
+                }
             }
 
             &:hover .actions {

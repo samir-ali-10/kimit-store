@@ -1,5 +1,4 @@
-import { CHANGETOARABIC, CHANGETOENGLISH } from "../actions/types";
-import i18next from "i18next";
+import { CHANGETOARABIC } from "../actions/types";
 
 const langState = {
     language: "en"

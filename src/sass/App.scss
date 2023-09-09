@@ -51,11 +51,29 @@ ul {
     }
 }
 
+.slide_in {
+    transform: translateX(0) !important;
+    -webkit-transform: translateX(0) !important;
+    -moz-transform: translateX(0) !important;
+    -ms-transform: translateX(0) !important;
+    -o-transform: translateX(0) !important;
+    opacity: 1 !important;
+}
+
+::selection {
+    background-color: #0dcaf0;
+    color: white;
+}
+
 @media (max-width: 550px) {
     .nav_bar {
         nav {
             ul {
                 display: none !important;
+
+                button {
+                    display: block !important;
+                }
             }
 
             .menuIcon {
