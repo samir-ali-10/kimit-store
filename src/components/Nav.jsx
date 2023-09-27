@@ -9,6 +9,10 @@ import { useTranslation } from 'react-i18next';
 import i18n from "i18next";
 import { useDispatch, useSelector } from 'react-redux';
 import { CHANGETOARABIC } from "../redux/actions/types";
+import { CartItemCounter } from '../context/CartItemCounter';
+import { Button } from 'bootstrap';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { PersonData } from '../context/PersonData';
 
 export default function Nav() {
 
@@ -16,6 +20,9 @@ export default function Nav() {
 
     const [listVisibility, setListVisibility] = useState(""),
         [items, setItems] = useState([]);
+
+    const [lastScrollY, setLastScrollY] = useState(0),
+        [show, setShow] = useState(true);
 
     let menuActive = () => {
         if (listVisibility === "") {
@@ -26,12 +33,26 @@ export default function Nav() {
         }
     }
 
+    const controlNavbar = () => {
+        if (typeof window !== 'undefined') {
+            if (window.scrollY > lastScrollY) {
+                setShow(false);
+            } else {
+                setShow(true);
+            }
+            setLastScrollY(window.scrollY);
+        }
+    };
 
-    // let checkVisibility = () => {
-    //     setListVisibility(window.innerWidth === "550px"? "active" : "")
-    // }
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            window.addEventListener('scroll', controlNavbar);
 
-    // window.addEventListener("resize", checkVisibility)
+            return () => {
+                window.removeEventListener('scroll', controlNavbar);
+            };
+        }
+    }, [lastScrollY]);
 
     let theme = useContext(ThemeContext);
 
@@ -51,6 +72,10 @@ export default function Nav() {
         dispatch({ type: CHANGETOARABIC })
     }
 
+    useEffect(() => {
+        localStorage.setItem("lang", lang)
+    }, [lang])
+
     let getCartItems = () => {
         fetch(`http://localhost:1111/cart`).then(res => res.json()).then(data => setItems(data))
     }
@@ -59,9 +84,11 @@ export default function Nav() {
         getCartItems();
     }, [])
 
+    let data = useContext(PersonData);
+
     return (
 
-        <div className='nav_bar bg-dark sticky'>
+        <div className={`nav_bar bg-dark ${show === true ? "active" : ""}`}>
             <nav>
                 <h2 className='text-light'>Kimit Store</h2>
                 <div onClick={menuActive} className="menuIcon">
@@ -69,7 +96,7 @@ export default function Nav() {
                 </div>
                 <ul className={listVisibility}>
                     <li>
-                        <NavLink to="/">{t("products")}</NavLink>
+                        <NavLink to="/products">{t("products")}</NavLink>
                     </li>
                     <li>
                         <NavLink to="/about">{t("about")}</NavLink>
@@ -88,6 +115,14 @@ export default function Nav() {
                         <NavLink to="/cart" className="me-2 fs-5"><FontAwesomeIcon icon={faCartShopping} /></NavLink>
                         <span>{items.length}</span>
                     </div>
+                    {
+                        data.logged === "false" ? <NavLink to="/" className='login_btn ms-3'>Login</NavLink> : <NavLink><FontAwesomeIcon className='user fs-4' icon={faUser} /></NavLink>
+                    }
+                    <p>
+                        {
+                            data.firstName.charAt(0).toUpperCase() + data.firstName.slice(1)
+                        }
+                    </p>
                 </div>
             </nav>
         </div>

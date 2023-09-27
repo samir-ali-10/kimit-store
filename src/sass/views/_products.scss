@@ -9,6 +9,7 @@
         }
 
         .info {
+            color: white;
             text-align: left;
             position: absolute;
             top: 40%;
@@ -17,9 +18,11 @@
             h1 {
                 font-size: 4.5rem;
                 width: 100%;
+                color: white !important;
             }
-
+            
             p {
+                color: white !important;
                 font-size: 1.3rem;
             }
         }

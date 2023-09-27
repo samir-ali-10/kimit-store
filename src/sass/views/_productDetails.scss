@@ -1,16 +1,31 @@
 .wrapping {
-    .image {
-        border-bottom: none;
 
-        img {
-            width: 100%;
-            height: 100vh;
+    .no_images {
+        padding-top: 100px;
+    }
+
+    .carousel {
+        height: 400px;
+
+        .carousel-inner {
+            height: 100%;
+        }
+
+        .image {
+            border-bottom: none;
+
+            img {
+                width: 100%;
+                height: 100vh;
+            }
         }
     }
+
 
     .content {
         .heading {
             .title {
+                text-align: left;
                 h3 {
                     font-size: 2.5rem;
                 }

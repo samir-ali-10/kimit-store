@@ -1,13 +1,17 @@
 @import "./views/nav";
+@import "./views/login";
+@import "./views/register";
 @import "./views/lightmode";
 @import "./views/productsComp";
 @import "./views/productDetails";
 @import "./views/category";
+@import "./views/about";
 @import "./views/cart";
 @import "./views/products";
 @import "./views/toTopButton";
 @import "./views/editProduct";
-
+@import "./views/addProduct";
+@import "./views/footer";
 
 * {
     scroll-behavior: smooth;
@@ -21,6 +25,7 @@ body {
 }
 
 ul {
+    list-style: none;
     padding: 0;
     margin: 0;
 }

@@ -14,5 +14,18 @@
     "product_price": "سعر المنتج",
     "product_desc": "وصف المنتج",
     "submit": "إرسال",
-    "clear": "مسح"
+    "clear": "مسح",
+    "about_us": "عنا",
+    "help": "مساعده",
+    "categories": "فئات",
+    "careers": "وظائف",
+    "terms_condition": "الشروط والأحكام",
+    "privacy_policy": "سياسة الخصوصية",
+    "responsibility": "مسؤولية",
+    "deliver": "تقديم",
+    "returns": "ارجاع",
+    "secure_payments": "مدفوعات آمنة",
+    "contact_us": "اتصل بنا",
+    "follow_us": "تبعنا",
+    "supported_payment_methods": "طرق الدفع المدعومة"
 }

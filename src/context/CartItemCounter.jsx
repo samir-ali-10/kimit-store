@@ -1,26 +1,22 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 
 export const CartItemCounter = createContext();
 
 const CounterProvider = ({ children }) => {
-    let [counter, setCounter] = useState(0),
-        [items, setItems] = useState([]);
+    let [items, setItems] = useState([]);
 
     let getItem = () => {
         fetch(`http://localhost:1111/cart`).then(res => res.json()).then(data => setItems(data))
     }
 
+    let callBack = useCallback(getItem, [items])
+
     // useEffect(() => {
-        
+
     // }, [])
 
-    let handleCounter = () => {
-        getItem();
-        setCounter(counter = items.length);
-    }
-
-    return(
-        <CartItemCounter.Provider value={{counter, handleCounter}}>
+    return (
+        <CartItemCounter.Provider value={{callBack}}>
             {children}
         </CartItemCounter.Provider>
     )

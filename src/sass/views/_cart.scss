@@ -21,7 +21,10 @@
         }
 
         .controls {
+            margin-inline-start: 20px;
             margin-inline-end: 20px;
+            display: flex;
+            gap: 5px;
         }
     }
 }

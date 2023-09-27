@@ -5,6 +5,8 @@ import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2'
 import { useTranslation } from 'react-i18next';
 import ToTopButton from '../components/ToTopButton';
+import Footer from '../components/Footer';
+import Nav from '../components/Nav';
 
 export default function Cart() {
 
@@ -37,6 +39,7 @@ export default function Cart() {
 
     return (
         <>
+            <Nav />
             <div className='cart text-center pt-4'>
                 <h2 className='mb-5'>Products in the cart</h2>
                 <Container>
@@ -56,9 +59,9 @@ export default function Cart() {
                                         </div>
                                     </div>
                                     <div className="controls">
-                                        <Button className='btn btn-primary me-2'><FontAwesomeIcon icon={faPlus} /></Button>
-                                        <Button className='btn btn-secondary me-2'><FontAwesomeIcon icon={faMinus} /></Button>
-                                        <Button className='btn btn-danger me-2' onClick={() => deleteItem(item)}>{t("delete")}</Button>
+                                        <Button className='btn btn-primary'><FontAwesomeIcon icon={faPlus} /></Button>
+                                        <Button className='btn btn-secondary'><FontAwesomeIcon icon={faMinus} /></Button>
+                                        <Button className='btn btn-danger' onClick={() => deleteItem(item)}>{t("delete")}</Button>
                                     </div>
                                 </div>
                             )
@@ -69,7 +72,9 @@ export default function Cart() {
                 <div className="test">
                 </div>
             </div>
-            <ToTopButton/>
+            <ToTopButton />
+            <Footer />
         </>
+
     )
 }

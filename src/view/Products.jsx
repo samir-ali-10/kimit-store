@@ -5,6 +5,9 @@ import Button from 'react-bootstrap/Button';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 import ToTopButton from '../components/ToTopButton';
+import Footer from '../components/Footer';
+import laptopImage from "../imgs/apple-mouse-artificial-flowers-blurred-background-1229861.jpg";
+import Nav from '../components/Nav';
 
 export default function Products({ handleCart }) {
     const { t } = useTranslation();
@@ -40,6 +43,7 @@ export default function Products({ handleCart }) {
 
     return (
         <>
+            <Nav />
             <div className='products text-center'>
                 {
                     products.length !== 0
@@ -49,12 +53,12 @@ export default function Products({ handleCart }) {
                                 {
                                     <>
                                         <div className="image">
-                                            <img src={constant} alt="" />
+                                            <img src={laptopImage} alt="" />
                                         </div>
                                         <div className='info'>
                                             <h1>{t(`select_your_perfect_product`)}</h1>
                                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius accusamus <br /> illum est iure aliquam reiciendis fugit minus aspernatur dolor ratione?</p>
-                                            <NavLink to="/about"><Button className='btn btn-dark'>{t("about")}</Button></NavLink>
+                                            <NavLink to="/about"><Button className='btn btn-light'>{t("about")}</Button></NavLink>
                                         </div>
                                     </>
                                 }
@@ -79,6 +83,7 @@ export default function Products({ handleCart }) {
                 }
             </div>
             <ToTopButton />
+            <Footer />
         </>
     )
 }

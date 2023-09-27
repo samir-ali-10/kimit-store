@@ -7,17 +7,20 @@ import ThemeProvider from './context/ThemeContext';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import CounterProvider from './context/CartItemCounter';
+import DataProvider from './context/PersonData';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter >
       <ThemeProvider>
-        <CounterProvider>
-          <Provider store={store}>
-            <App />
-          </Provider>
-        </CounterProvider>
+        <DataProvider>
+          <CounterProvider>
+            <Provider store={store}>
+              <App />
+            </Provider>
+          </CounterProvider>
+        </DataProvider>
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>

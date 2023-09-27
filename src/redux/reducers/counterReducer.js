@@ -1,7 +1,7 @@
 import { CHANGETOARABIC } from "../actions/types";
 
 const langState = {
-    language: "en"
+    language: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en"
 }
 
 const counterReducer = (state = langState, action) => {

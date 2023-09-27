@@ -15,6 +15,8 @@ import ArTrans from "./locale/ar.json";
 import EditProduct from './view/EditProduct';
 import AddProduct from './view/AddProduct';
 import { useSelector } from 'react-redux';
+import Login from './view/Login';
+import Register from './view/Register';
 
 function App() {
 
@@ -43,13 +45,14 @@ function App() {
 
   return (
     <div className={`App ${theme.theme}`}>
-      <Nav />
       <Routes>
+        <Route path='/' element={<Login />} />
+        <Route path='/register' element={<Register/>} />
         <Route path='/about' element={<About />} />
-        <Route path='/' element={<Products />} />
+        <Route path='/products' element={<Products />} />
         <Route path='/cart' element={<Cart />} />
-        <Route path='/:productId' element={<ProductDetails />} />
-        <Route path='/edit/:productId' element={<EditProduct />} />
+        <Route path='/products/:productId' element={<ProductDetails />} />
+        <Route path='/products/edit/:productId' element={<EditProduct />} />
         <Route path='/addProduct' element={<AddProduct />} />
       </Routes>
     </div>

@@ -5,6 +5,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
+import Nav from '../components/Nav';
 
 export default function ProductDetails() {
 
@@ -44,19 +45,22 @@ export default function ProductDetails() {
 
 
     return (
-        <div className="wrapping">
-            <>
-                <Carousel className='carousel text-center bg-dark' fade>
-                    <Carousel.Item>
-                        <img src={images[0]} alt="dsds" />
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img src={images[2]} alt="dsdsd" />
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img src={images[3]} alt="dsdsd" />
-                    </Carousel.Item>
-                </Carousel>
+        <>
+            <Nav />
+            <div className="wrapping text-center">
+                {
+                    images.length !== 0
+                        ?
+                        <Carousel className='carousel text-center bg-dark' fade>
+                            {images.map((image, index) =>
+                                <Carousel.Item key={index}>
+                                    <img src={image} alt="dsds" />
+                                </Carousel.Item>
+                            )}
+                        </Carousel>
+                        :
+                        <h1 className='no_images text-info'>There are no images to show</h1>
+                }
                 <div className="content m-3">
                     <div className="heading d-flex justify-content-between">
                         <div className="title">
@@ -73,7 +77,7 @@ export default function ProductDetails() {
                         </div>
                     </div>
                 </div>
-            </>
-        </div>
+            </div >
+        </>
     )
 }
