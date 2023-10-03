@@ -24,6 +24,11 @@ export default function Register() {
         }
     }
 
+    let clearFields = () => {
+        data.setPassword("");
+        data.setConfPassword("");
+    }
+
 
 
     return (
@@ -55,8 +60,11 @@ export default function Register() {
                         <p className='m-0'>Passwords Don't Match</p>
                     </div> : ""
                 }
-                <input className='submit w-100' type="submit" value="Sign Up" onClick={checkPasswords} />
-                <NavLink to="/">Already Have An Account?</NavLink>
+                <input className='submit w-100' type="submit" value="Sign Up" onClick={() => {
+                    checkPasswords()
+                    clearFields()
+                }} />
+                <NavLink to="/" onClick={clearFields}>Already Have An Account?</NavLink>
             </form>
         </div>
     )

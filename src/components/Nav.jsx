@@ -8,11 +8,12 @@ import { ThemeContext } from '../context/ThemeContext';
 import { useTranslation } from 'react-i18next';
 import i18n from "i18next";
 import { useDispatch, useSelector } from 'react-redux';
-import { CHANGETOARABIC } from "../redux/actions/types";
+// import { CHANGETOARABIC } from "../redux/actions/types";
 import { CartItemCounter } from '../context/CartItemCounter';
 import { Button } from 'bootstrap';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { PersonData } from '../context/PersonData';
+import { arabic } from '../redux/features/langauge/languageSlice';
 
 export default function Nav() {
 
@@ -65,29 +66,28 @@ export default function Nav() {
         document.body.classList.remove("rtl");
     }
 
-    let lang = useSelector(state => state.language);
-    let dispatch = useDispatch();
-
-    let changeToArabic = () => {
-        dispatch({ type: CHANGETOARABIC })
-    }
-
-    useEffect(() => {
-        localStorage.setItem("lang", lang)
-    }, [lang])
-
+    
     let getCartItems = () => {
         fetch(`http://localhost:1111/cart`).then(res => res.json()).then(data => setItems(data))
     }
 
+    const lang = useSelector(state => state.lang.language)
+    const cart = useSelector((state) => state.cart.quantity)
+    const dispatch = useDispatch()
+
     useEffect(() => {
         getCartItems();
-    }, [])
+    }, [cart])
 
     let data = useContext(PersonData);
 
+    
+    useEffect(() => {
+        localStorage.setItem("lang", lang)
+    }, [lang])
+    
     return (
-
+        
         <div className={`nav_bar bg-dark ${show === true ? "active" : ""}`}>
             <nav>
                 <h2 className='text-light'>Kimit Store</h2>
@@ -110,7 +110,7 @@ export default function Nav() {
                 </ul>
                 <div className="icons d-flex align-items-center">
                     <FontAwesomeIcon onClick={theme.toggleTheme} className='me-2 ms-2 fs-5' icon={faSun} />
-                    <FontAwesomeIcon onClick={changeToArabic} className='me-2 fs-5' icon={faLanguage} />
+                    <FontAwesomeIcon onClick={() => dispatch(arabic())} className='me-2 fs-5' icon={faLanguage} />
                     <div className="cart_items">
                         <NavLink to="/cart" className="me-2 fs-5"><FontAwesomeIcon icon={faCartShopping} /></NavLink>
                         <span>{items.length}</span>
@@ -118,11 +118,6 @@ export default function Nav() {
                     {
                         data.logged === "false" ? <NavLink to="/" className='login_btn ms-3'>Login</NavLink> : <NavLink><FontAwesomeIcon className='user fs-4' icon={faUser} /></NavLink>
                     }
-                    <p>
-                        {
-                            data.firstName.charAt(0).toUpperCase() + data.firstName.slice(1)
-                        }
-                    </p>
                 </div>
             </nav>
         </div>

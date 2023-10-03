@@ -7,6 +7,9 @@ import { useTranslation } from 'react-i18next';
 import ToTopButton from '../components/ToTopButton';
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteFromCart } from '../redux/features/cart/cartSlice';
+import cartImage from "../imgs/cart_image.jpg";
 
 export default function Cart() {
 
@@ -18,11 +21,15 @@ export default function Cart() {
         fetch(`http://localhost:1111/cart`).then(res => res.json()).then(data => setItems(data))
     }
 
+    const cart = useSelector((state) => state.cart.quantity)
+    const dispatch = useDispatch()
+
     useEffect(() => {
         getItem();
-    }, [])
+    }, [cart])
 
     let deleteItem = (product) => {
+        dispatch(deleteFromCart())
         Swal.fire({
             icon: 'error',
             title: 'Are you sure you want to remove from cart',
@@ -41,7 +48,6 @@ export default function Cart() {
         <>
             <Nav />
             <div className='cart text-center pt-4'>
-                <h2 className='mb-5'>Products in the cart</h2>
                 <Container>
                     {
                         items.length !== 0
@@ -66,7 +72,10 @@ export default function Cart() {
                                 </div>
                             )
                             :
-                            <h4>Cart Is Empty</h4>
+                            <div className="empty">
+                                <img className='mb-5' src={cartImage} alt="" />
+                                <h2 className='mb-3'>The Cart is Empty</h2>
+                            </div>
                     }
                 </Container>
                 <div className="test">

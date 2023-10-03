@@ -38,9 +38,6 @@ export default function Products({ handleCart }) {
         getCategories();
     }, [])
 
-
-
-
     return (
         <>
             <Nav />

@@ -4,12 +4,15 @@ import Card from 'react-bootstrap/Card';
 import { Link, NavLink } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import { CartItemCounter } from '../context/CartItemCounter';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart } from '../redux/features/cart/cartSlice';
 
 export default function ProductsComponent({ products, getProducts }) {
 
+    let count = useContext(CartItemCounter);
+
     let [cartItem, setCartItem] = useState({}),
         [inCart, setInCart] = useState(),
-        [heart, setHeart] = useState("favorite_icon regular"),
         [isIntersecting, setIsIntersecting] = useState(""),
         [rel, setRel] = useState(false);
 
@@ -20,21 +23,6 @@ export default function ProductsComponent({ products, getProducts }) {
     let [validation, setValidation] = useState([]);
 
     let [disabled, setDisabled] = useState();
-
-    let deleteProduct = (product) => {
-        Swal.fire({
-            icon: 'error',
-            title: 'Are you sure you delete',
-            text: `${product.title}`,
-            showCancelButton: true
-        }).then((data) => {
-            if (data.isConfirmed) {
-                fetch(`http://localhost:1111/products/${product.id}`, { method: 'DELETE' })
-                    .then(res => res.json())
-                    .then(getProducts);
-            }
-        })
-    }
 
     let checkSingleProduct = (product) => {
         items.map(async item => {
@@ -48,7 +36,6 @@ export default function ProductsComponent({ products, getProducts }) {
         })
     }
 
-    
     async function postDataInCart(product) {
         let response = await fetch(`http://localhost:1111/cart`, {
             method: 'POST',
@@ -66,25 +53,14 @@ export default function ProductsComponent({ products, getProducts }) {
     let getItem = () => {
         fetch(`http://localhost:1111/cart`).then(res => res.json()).then(data => setItems(data))
     }
-
+    
+    const cart = useSelector((state) => state.cart.quantity)
+    const dispatch = useDispatch()
+    
     useEffect(() => {
         getItem();
-    }, [])
+    }, [cart])
 
-    let reload = () => {
-        if (rel === true) {
-            window.location.reload()
-        }
-        else {
-            return
-        }
-    }
-
-    let check = (e) => {
-        items.map(item =>
-            e.id === item.id && setDisabled("disabled")
-        )
-    }
 
 
     return (
@@ -96,8 +72,8 @@ export default function ProductsComponent({ products, getProducts }) {
                             <Card.Img variant="top" loading='lazy' src={product.thumbnail} />
                             <div className="actions">
                                 <Link to={`./edit/${[product.id]}`} className='btn btn-light me-3'>Edit</Link>
-                                <Button className='btn btn-light me-3' onClick={() => deleteProduct(product)}>Delete</Button>
                                 <Button className={`btn btn-light me-3`} onClick={() => {
+                                    dispatch(addToCart())
                                     postDataInCart(product)
                                     checkSingleProduct(product)
                                 }}>Send item to cart</Button>

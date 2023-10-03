@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { PersonData } from '../context/PersonData';
 
@@ -9,9 +9,8 @@ export default function Login() {
     let handleSubmit = (e) => {
         e.preventDefault();
     }
-
     let sendData = () => {
-        if(data.email !== "" && data.password !== "") {
+        if (data.email !== "" && data.password !== "") {
             localStorage.setItem("logged", data.setLogged("true"))
             navigate("/products");
         }
@@ -21,6 +20,12 @@ export default function Login() {
     }
 
     let data = useContext(PersonData);
+
+    let clearFields = () => {
+        data.setPassword("");
+        data.setConfPassword("");
+    }
+
 
     return (
         <div className='login'>
@@ -34,8 +39,11 @@ export default function Login() {
                     <label htmlFor="password">Password</label>
                     <input type="password" required value={data.password} name="password" placeholder='Enter Your Password' onChange={data.handleChange} />
                 </div>
-                <input className='submit w-100' type="submit" value="Login" onClick={sendData} />
-                <NavLink to="/register">Don't Have An Account?</NavLink>
+                <input className='submit w-100' type="submit" value="Login" onClick={() => {
+                    sendData()
+                    clearFields()
+                }} />
+                <NavLink to="/register" onClick={clearFields}>Don't Have An Account?</NavLink>
             </form>
         </div>
     )

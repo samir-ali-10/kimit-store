@@ -84,7 +84,7 @@ ul {
 }
 .wrapping .image img {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
 }
 .wrapping .content .heading .title h3 {
   font-size: 2.5rem;

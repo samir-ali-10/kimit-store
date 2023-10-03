@@ -4,7 +4,7 @@ export const PersonData = createContext();
 
 const DataProvider = ({ children }) => {
 
-    let [firstName, setFirstName] = useState(localStorage.getItem("fName") ? localStorage.getItem("fName") : null),
+    var [firstName, setFirstName] = useState(localStorage.getItem("fName") ? localStorage.getItem("fName") : null),
         [lastName, setLastName] = useState(localStorage.getItem("lName") ? localStorage.getItem("lName") : null),
         [email, setEmail] = useState(localStorage.getItem("email") ? localStorage.getItem("email") : null),
         [password, setPassword] = useState(""),
@@ -14,7 +14,7 @@ const DataProvider = ({ children }) => {
 
     let handleChange = (e) => {
         if (e.target.name === "fName") {
-            setFirstName(localStorage.setItem("fName", e.target.value))
+            setFirstName(() => localStorage.setItem("fName", e.target.value))
         }
         else if (e.target.name === "lName") {
             setLastName(localStorage.setItem("lName", e.target.value))
@@ -31,7 +31,7 @@ const DataProvider = ({ children }) => {
     }
 
     return (
-        <PersonData.Provider value={{ firstName, lastName, email, password, confPassword, logged, setLogged, handleChange }}>
+        <PersonData.Provider value={{ firstName, lastName, email, password, setPassword, confPassword, setConfPassword, logged, setLogged, handleChange }}>
             {children}
         </PersonData.Provider>
     );

@@ -11,12 +11,22 @@ const CounterProvider = ({ children }) => {
 
     let callBack = useCallback(getItem, [items])
 
+    let [counter, setCounter] = useState(0);
+
+    let increment = () => {
+        setCounter((prev) => prev + 1 );
+    }
+
+    let decrement = () => {
+        setCounter((prev) => (prev > 0 ? --prev : counter));
+    }
+
     // useEffect(() => {
 
     // }, [])
 
     return (
-        <CartItemCounter.Provider value={{callBack}}>
+        <CartItemCounter.Provider value={{callBack, counter, increment, decrement}}>
             {children}
         </CartItemCounter.Provider>
     )

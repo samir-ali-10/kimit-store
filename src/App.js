@@ -20,7 +20,7 @@ import Register from './view/Register';
 
 function App() {
 
-  let lang = useSelector(state => state.language);
+  const lang = useSelector(state => state.lang.language)
 
   i18n
     .use(initReactI18next)
