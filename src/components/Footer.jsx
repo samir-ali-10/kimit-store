@@ -56,7 +56,7 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="about_us d-flex justify-content-between">
-                    <div className="payment">
+                    <div className="payment mb-5">
                         <h3>{t("supported_payment_methods")}</h3>
                         <ul className='d-flex bg-white'>
                             <li className='me-2'><FontAwesomeIcon icon={faVcard} /></li>
@@ -75,7 +75,7 @@ export default function Footer() {
                 </div>
             </Container>
             <div className="copyright d-flex justify-content-between">
-                <p>Copyright © 2019 - All rights reserved.</p>
+                <p className='mb-3'>Copyright © 2019 - All rights reserved.</p>
                 <p>Made with <FontAwesomeIcon className='text-danger' icon={faHeart} /> by Samir</p>
             </div>
         </footer>
