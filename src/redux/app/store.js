@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import langReducer from "../features/langauge/languageSlice"
-import cartReducer from "../features/cart/cartSlice"
+import cartReducer, { getTotals } from "../features/cart/cartSlice"
 
 const store = configureStore({
     reducer: {
@@ -8,5 +8,7 @@ const store = configureStore({
         cart: cartReducer
     }
 })
+
+store.dispatch(getTotals());
 
 export default store;

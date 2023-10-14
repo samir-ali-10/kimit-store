@@ -54,8 +54,12 @@ export default function ProductsComponent({ products, getProducts }) {
         fetch(`http://localhost:1111/cart`).then(res => res.json()).then(data => setItems(data))
     }
     
-    const cart = useSelector((state) => state.cart.quantity)
+    const cart = useSelector((state) => state.cart)
     const dispatch = useDispatch()
+
+    const handleAddToCart = (product) => {
+        dispatch(addToCart(product))
+    }
     
     useEffect(() => {
         getItem();
@@ -73,9 +77,7 @@ export default function ProductsComponent({ products, getProducts }) {
                             <div className="actions">
                                 <Link to={`./edit/${[product.id]}`} className='btn btn-light me-3'>Edit</Link>
                                 <Button className={`btn btn-light me-3`} onClick={() => {
-                                    dispatch(addToCart())
-                                    postDataInCart(product)
-                                    checkSingleProduct(product)
+                                    handleAddToCart(product)
                                 }}>Send item to cart</Button>
                             </div>
                         </div>

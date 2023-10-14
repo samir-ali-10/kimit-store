@@ -8,6 +8,8 @@ import ToTopButton from '../components/ToTopButton';
 import Footer from '../components/Footer';
 import laptopImage from "../imgs/apple-mouse-artificial-flowers-blurred-background-1229861.jpg";
 import Nav from '../components/Nav';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTotals } from '../redux/features/cart/cartSlice';
 
 export default function Products({ handleCart }) {
     const { t } = useTranslation();
@@ -37,6 +39,13 @@ export default function Products({ handleCart }) {
         getProducts();
         getCategories();
     }, [])
+
+    const cart = useSelector((state) => state.cart)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getTotals())
+    }, [cart, dispatch])
 
     return (
         <>

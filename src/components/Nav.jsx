@@ -72,12 +72,8 @@ export default function Nav() {
     }
 
     const lang = useSelector(state => state.lang.language)
-    const cart = useSelector((state) => state.cart.quantity)
+    const {cartTotalQuantity} = useSelector((state) => state.cart)
     const dispatch = useDispatch()
-
-    useEffect(() => {
-        getCartItems();
-    }, [cart])
 
     let data = useContext(PersonData);
 
@@ -109,14 +105,14 @@ export default function Nav() {
                     </li>
                 </ul>
                 <div className="icons d-flex align-items-center">
-                    <FontAwesomeIcon onClick={theme.toggleTheme} className='me-2 ms-2 fs-5' icon={faSun} />
-                    <FontAwesomeIcon onClick={() => dispatch(arabic())} className='me-2 fs-5' icon={faLanguage} />
+                    <FontAwesomeIcon onClick={theme.toggleTheme} className='me-3 ms-3 fs-5' icon={faSun} />
+                    <FontAwesomeIcon onClick={() => dispatch(arabic())} className='me-3 fs-5' icon={faLanguage} />
                     <div className="cart_items">
-                        <NavLink to="/cart" className="me-2 fs-5"><FontAwesomeIcon icon={faCartShopping} /></NavLink>
-                        <span>{items.length}</span>
+                        <NavLink to="/cart" className="me-3 fs-5"><FontAwesomeIcon icon={faCartShopping} /></NavLink>
+                        <span>{cartTotalQuantity}</span>
                     </div>
                     {
-                        data.logged === "false" ? <NavLink to="/" className='login_btn ms-3'>Login</NavLink> : <NavLink><FontAwesomeIcon className='user fs-4' icon={faUser} /></NavLink>
+                        data.logged === "false" ? <NavLink to="/" className='login_btn ms-3'>Login</NavLink> : <NavLink><FontAwesomeIcon className='user' icon={faUser} /></NavLink>
                     }
                 </div>
             </nav>

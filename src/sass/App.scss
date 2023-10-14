@@ -52,6 +52,15 @@ ul {
                     }
                 }
             }
+
+            ul {
+                li {
+                    button {
+                        left: 5px;
+                        right: initial;
+                    }
+                }
+            }
         }
     }
 
@@ -59,12 +68,22 @@ ul {
         .heading {
             letter-spacing: normal;
         }
+
         .about_us {
             p {
                 letter-spacing: normal;
             }
         }
+
         .section_two {
+            p {
+                letter-spacing: normal;
+            }
+        }
+    }
+
+    .cart {
+        .total_price {
             p {
                 letter-spacing: normal;
             }

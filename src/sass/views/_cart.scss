@@ -24,7 +24,30 @@
             margin-inline-start: 20px;
             margin-inline-end: 20px;
             display: flex;
+            align-items: center;
+            justify-content: center;
             gap: 5px;
+            .cartItem_quantity {
+                margin: 0 5px;
+            }
+        }
+    }
+
+    .total_price {
+        background-color: #0dcaf0;
+        border-top-right-radius: 6px;
+        border-top-left-radius: 6px;
+        padding: 10px 0;
+        p {
+            font-size: 2rem;
+            margin: 0;
+            color: white;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: capitalize;
+            span {
+                font-weight: 600;
+            }
         }
     }
 }

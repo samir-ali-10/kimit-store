@@ -35,7 +35,7 @@
             display: none;
 
             img {
-                width: 50px;
+                width: 35px;
             }
         }
 
@@ -133,6 +133,7 @@
                     -o-border-radius: 6px;
                 }
             }
+
             p {
                 color: white;
                 margin: 0;
@@ -152,17 +153,19 @@
                 -o-border-radius: 6px;
                 padding: 5px 15px;
             }
+
             .user {
                 color: black;
                 margin-inline-start: 40px;
                 background-color: white;
-                padding: 10px;
+                padding: 10px; 
                 border-radius: 6px;
                 -webkit-border-radius: 6px;
                 -moz-border-radius: 6px;
                 -ms-border-radius: 6px;
                 -o-border-radius: 6px;
-}
+                
+            }
         }
     }
 }
@@ -175,20 +178,5 @@
         -ms-transform: translateX(0);
         -o-transform: translateX(0);
         opacity: 1;
-    }
-}
-
-@media (max-width: 400px) {
-    .nav_bar {
-
-        nav {
-
-            .menuIcon {
-
-                img {
-                    width: 30px;
-                }
-            }
-        }
     }
 }
