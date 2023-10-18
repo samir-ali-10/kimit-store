@@ -11,7 +11,7 @@ export default function Footer() {
 
     let { t } = useTranslation();
 
-    let baseUrl = 'http://localhost:1111';
+    let baseUrl = 'https://dummyjson.com/products';
 
     let getCategories = () => {
         fetch(`${baseUrl}/categories`).then((res) => res.json()).then((data) => setCategories(data))

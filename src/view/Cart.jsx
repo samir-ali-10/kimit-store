@@ -17,9 +17,9 @@ export default function Cart() {
 
     let [items, setItems] = useState([]);
 
-    let getItem = () => {
-        fetch(`http://localhost:1111/cart`).then(res => res.json()).then(data => setItems(data))
-    }
+    // let getItem = () => {
+    //     fetch(`http://localhost:1111/cart`).then(res => res.json()).then(data => setItems(data))
+    // }
 
     const cart = useSelector((state) => state.cart)
     const dispatch = useDispatch()
@@ -42,27 +42,27 @@ export default function Cart() {
 
     useEffect(() => {
         dispatch(getTotals())
-    },[cart, dispatch])
+    }, [cart, dispatch])
 
-    useEffect(() => {
-        getItem();
-    }, [cart])
+    // useEffect(() => {
+    //     getItem();
+    // }, [cart])
 
 
-    let deleteItem = (product) => {
-        Swal.fire({
-            icon: 'error',
-            title: 'Are you sure you want to remove from cart',
-            text: `${product.title}`,
-            showCancelButton: true
-        }).then((data) => {
-            if (data.isConfirmed) {
-                fetch(`http://localhost:1111/cart/${product.id}`, { method: 'DELETE' })
-                    .then(res => res.json())
-                    .then(getItem);
-            }
-        })
-    }
+    // let deleteItem = (product) => {
+    //     Swal.fire({
+    //         icon: 'error',
+    //         title: 'Are you sure you want to remove from cart',
+    //         text: `${product.title}`,
+    //         showCancelButton: true
+    //     }).then((data) => {
+    //         if (data.isConfirmed) {
+    //             fetch(`http://localhost:1111/cart/${product.id}`, { method: 'DELETE' })
+    //                 .then(res => res.json())
+    //                 .then(getItem);
+    //         }
+    //     })
+    // }
 
     return (
         <>
@@ -105,36 +105,6 @@ export default function Cart() {
                     {
                         cart.cartItems.length === 0 ? "" : <Button className='clear_cart mb-5 btn-danger' onClick={() => handleClearCart()}>Clear Cart</Button>
                     }
-                    {/* {
-                        items.length !== 0
-                            ?
-                            items.map(item =>
-                                <div key={item.id}>
-                                    <div className="cart_item d-flex justify-content-between mb-5">
-                                        <div className="heading d-flex">
-                                            <div className="image">
-                                                <img src={item.thumbnail} alt="" />
-                                            </div>
-                                            <div className="info">
-                                                <h4 className="title">{item.title}</h4>
-                                                <p>${item.price}</p>
-                                                <span>{item.description}</span>
-                                            </div>
-                                        </div>
-                                        <div className="controls">
-                                            <Button className='btn btn-danger' onClick={() => {
-                                                deleteItem(item)
-                                            }}>{t("delete")}</Button>
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                            :
-                            <div className="empty">
-                                <img className='mb-5' src={cartImage} alt="" />
-                                <h2 className='mb-3'>{t("the_cart_is_empty")}</h2>
-                            </div>
-                    } */}
                     <div className="total_price">
                         <p>{t("total_price_of_all_products")}: <span>${cart.cartTotalAmount}</span></p>
                     </div>

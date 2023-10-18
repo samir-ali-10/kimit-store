@@ -18,12 +18,11 @@ export default function Products({ handleCart }) {
         [categories, setCategories] = useState([]),
         [constant, setConstant] = useState();
 
-    let baseUrl = 'http://localhost:1111';
+    let baseUrl = 'https://dummyjson.com/products';
 
     let getProducts = () => {
-        fetch(`${baseUrl}/products`).then((res) => res.json()).then((data) => {
-            setProducts(data)
-            setConstant(data[3].thumbnail)
+        fetch(`${baseUrl}`).then((res) => res.json()).then((data) => {
+            setProducts(data.products)
         });
     }
 
@@ -32,7 +31,7 @@ export default function Products({ handleCart }) {
     }
 
     let productFilter = (category) => {
-        fetch(`${baseUrl}/${category}`).then((res) => res.json()).then((data) => setProducts(data))
+        fetch(`${baseUrl}/category/${category}`).then((res) => res.json()).then((data) => setProducts(data.products))
     }
 
     useEffect(() => {
@@ -52,8 +51,13 @@ export default function Products({ handleCart }) {
             <Nav />
             <div className='products text-center'>
                 {
-                    products.length !== 0
+                    products.length === 0
                         ?
+
+                        <Spinner animation="border" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </Spinner>
+                        :
                         <>
                             <div className="title_product mb-5">
                                 {
@@ -81,11 +85,6 @@ export default function Products({ handleCart }) {
                                 <ProductsComponent handleCart={handleCart} products={products} getProducts={getProducts} />
                             </>
                         </>
-
-                        :
-                        <Spinner animation="border" role="status">
-                            <span className="visually-hidden">Loading...</span>
-                        </Spinner>
                 }
             </div>
             <ToTopButton />

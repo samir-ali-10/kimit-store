@@ -28,7 +28,7 @@ export default function AddProduct() {
     }
 
     async function postData() {
-        let response = await fetch(`http://localhost:1111/products`, {
+        let response = await fetch(`https://dummyjson.com/products`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json; charset=UTF-8'

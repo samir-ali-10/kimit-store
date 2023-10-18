@@ -19,7 +19,7 @@ export default function EditProduct() {
     let params = useParams();
 
     let getProduct = () => {
-        fetch(`http://localhost:1111/products/${params.productId}`).then(res => res.json()).then(data => {
+        fetch(`https://dummyjson.com/products/${params.productId}`).then(res => res.json()).then(data => {
             setProduct(data)
             setTitle(data.title)
             setPrice(data.price)
@@ -46,7 +46,7 @@ export default function EditProduct() {
     }
 
     async function postData() {
-        let response = await fetch(`http://localhost:1111/products/${params.productId}`, {
+        let response = await fetch(`https://dummyjson.com/products/${params.productId}`, {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json; charset=UTF-8'

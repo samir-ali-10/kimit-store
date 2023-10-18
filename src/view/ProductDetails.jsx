@@ -18,7 +18,7 @@ export default function ProductDetails() {
 
 
     let getProductDetails = () => {
-        fetch(`http://localhost:1111/products/${params.productId}`).then((res) => res.json()).then((data) => {
+        fetch(`https://dummyjson.com/products/${params.productId}`).then((res) => res.json()).then((data) => {
             setProductDetails(data);
             setImages(data.images)
         })

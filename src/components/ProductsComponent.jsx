@@ -24,35 +24,35 @@ export default function ProductsComponent({ products, getProducts }) {
 
     let [disabled, setDisabled] = useState();
 
-    let checkSingleProduct = (product) => {
-        items.map(async item => {
-            if (item.id === product.id) {
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Oops...',
-                    text: 'You can not add the same item twice'
-                })
-            }
-        })
-    }
+    // let checkSingleProduct = (product) => {
+    //     items.map(async item => {
+    //         if (item.id === product.id) {
+    //             Swal.fire({
+    //                 icon: 'warning',
+    //                 title: 'Oops...',
+    //                 text: 'You can not add the same item twice'
+    //             })
+    //         }
+    //     })
+    // }
 
-    async function postDataInCart(product) {
-        let response = await fetch(`http://localhost:1111/cart`, {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8'
-            },
-            body: JSON.stringify({
-                ...product,
-                inCart: true
-            })
-        })
-        return response.json();
-    }
+    // async function postDataInCart(product) {
+    //     let response = await fetch(`http://localhost:1111/cart`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-type': 'application/json; charset=UTF-8'
+    //         },
+    //         body: JSON.stringify({
+    //             ...product,
+    //             inCart: true
+    //         })
+    //     })
+    //     return response.json();
+    // }
 
-    let getItem = () => {
-        fetch(`http://localhost:1111/cart`).then(res => res.json()).then(data => setItems(data))
-    }
+    // let getItem = () => {
+    //     fetch(`http://localhost:1111/cart`).then(res => res.json()).then(data => setItems(data))
+    // }
     
     const cart = useSelector((state) => state.cart)
     const dispatch = useDispatch()
@@ -61,9 +61,9 @@ export default function ProductsComponent({ products, getProducts }) {
         dispatch(addToCart(product))
     }
     
-    useEffect(() => {
-        getItem();
-    }, [cart])
+    // useEffect(() => {
+    //     getItem();
+    // }, [cart])
 
 
 

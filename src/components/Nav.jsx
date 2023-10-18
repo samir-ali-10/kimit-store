@@ -67,9 +67,9 @@ export default function Nav() {
     }
 
     
-    let getCartItems = () => {
-        fetch(`http://localhost:1111/cart`).then(res => res.json()).then(data => setItems(data))
-    }
+    // let getCartItems = () => {
+    //     fetch(`http://localhost:1111/cart`).then(res => res.json()).then(data => setItems(data))
+    // }
 
     const lang = useSelector(state => state.lang.language)
     const {cartTotalQuantity} = useSelector((state) => state.cart)
