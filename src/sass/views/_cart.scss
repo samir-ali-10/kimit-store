@@ -16,7 +16,7 @@
             height: 150px;
 
             img {
-                width: 200px;
+                width: 100%;
             }
         }
 
@@ -79,6 +79,7 @@
                     border: none;
                     margin-right: 0 !important;
                     margin-bottom: 20px;
+                    margin-inline-end: 0;
 
                     img {
                         width: 100%;

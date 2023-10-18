@@ -15,12 +15,6 @@ export default function Cart() {
 
     const { t } = useTranslation();
 
-    let [items, setItems] = useState([]);
-
-    // let getItem = () => {
-    //     fetch(`http://localhost:1111/cart`).then(res => res.json()).then(data => setItems(data))
-    // }
-
     const cart = useSelector((state) => state.cart)
     const dispatch = useDispatch()
 
@@ -43,26 +37,6 @@ export default function Cart() {
     useEffect(() => {
         dispatch(getTotals())
     }, [cart, dispatch])
-
-    // useEffect(() => {
-    //     getItem();
-    // }, [cart])
-
-
-    // let deleteItem = (product) => {
-    //     Swal.fire({
-    //         icon: 'error',
-    //         title: 'Are you sure you want to remove from cart',
-    //         text: `${product.title}`,
-    //         showCancelButton: true
-    //     }).then((data) => {
-    //         if (data.isConfirmed) {
-    //             fetch(`http://localhost:1111/cart/${product.id}`, { method: 'DELETE' })
-    //                 .then(res => res.json())
-    //                 .then(getItem);
-    //         }
-    //     })
-    // }
 
     return (
         <>
