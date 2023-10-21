@@ -6,8 +6,11 @@ import Swal from 'sweetalert2'
 import { CartItemCounter } from '../context/CartItemCounter';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../redux/features/cart/cartSlice';
+import { useGetAllProductsQuery } from '../redux/features/products/productsApi';
 
 export default function ProductsComponent({ products, getProducts }) {
+
+    const { data, error, isLoading } = useGetAllProductsQuery();
 
     let count = useContext(CartItemCounter);
 
@@ -53,14 +56,14 @@ export default function ProductsComponent({ products, getProducts }) {
     // let getItem = () => {
     //     fetch(`http://localhost:1111/cart`).then(res => res.json()).then(data => setItems(data))
     // }
-    
+
     const cart = useSelector((state) => state.cart)
     const dispatch = useDispatch()
 
     const handleAddToCart = (product) => {
         dispatch(addToCart(product))
     }
-    
+
     // useEffect(() => {
     //     getItem();
     // }, [cart])
@@ -70,7 +73,7 @@ export default function ProductsComponent({ products, getProducts }) {
     return (
         <div ref={ref} className={`products_container ps-5 pe-5`}>
             {
-                products.map((product) =>
+                data?.map((product) =>
                     <Card key={product.id} className={`product_card mt-4`}>
                         <div className="image">
                             <Card.Img variant="top" loading='lazy' src={product.thumbnail} />
@@ -89,6 +92,25 @@ export default function ProductsComponent({ products, getProducts }) {
                         </Card.Body>
                     </Card>
                 )
+                // products.map((product) =>
+                //     <Card key={product.id} className={`product_card mt-4`}>
+                //         <div className="image">
+                //             <Card.Img variant="top" loading='lazy' src={product.thumbnail} />
+                //             <div className="actions">
+                //                 <Link to={`./edit/${[product.id]}`} className='btn btn-light me-3'>Edit</Link>
+                //                 <Button className={`btn btn-light me-3`} onClick={() => {
+                //                     handleAddToCart(product)
+                //                 }}>Send item to cart</Button>
+                //             </div>
+                //         </div>
+                //         <Card.Body className='card_body'>
+                //             <NavLink className="text-dark" to={`./${[product.id]}`}><Card.Title>{product.title}</Card.Title></NavLink>
+                //             <Card.Text>
+                //                 $ {product.price}
+                //             </Card.Text>
+                //         </Card.Body>
+                //     </Card>
+                // )
             }
         </div>
     )

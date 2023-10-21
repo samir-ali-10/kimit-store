@@ -3,15 +3,21 @@ import Spinner from 'react-bootstrap/Spinner';
 import ProductsComponent from '../components/ProductsComponent';
 import Button from 'react-bootstrap/Button';
 import { useTranslation } from 'react-i18next';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import ToTopButton from '../components/ToTopButton';
 import Footer from '../components/Footer';
 import laptopImage from "../imgs/apple-mouse-artificial-flowers-blurred-background-1229861.jpg";
 import Nav from '../components/Nav';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTotals } from '../redux/features/cart/cartSlice';
+import { useGetAllProductsQuery } from '../redux/features/products/productsApi';
 
 export default function Products({ handleCart }) {
+
+    const { id } = useParams()
+
+    const { data, error, isLoading } = useGetAllProductsQuery();
+
     const { t } = useTranslation();
 
     let [products, setProducts] = useState([]),
@@ -20,11 +26,11 @@ export default function Products({ handleCart }) {
 
     let baseUrl = 'https://dummyjson.com/products';
 
-    let getProducts = () => {
-        fetch(`${baseUrl}`).then((res) => res.json()).then((data) => {
-            setProducts(data.products)
-        });
-    }
+    // let getProducts = () => {
+    //     fetch(`${baseUrl}`).then((res) => res.json()).then((data) => {
+    //         setProducts(data.products)
+    //     });
+    // }
 
     let getCategories = () => {
         fetch(`${baseUrl}/categories`).then((res) => res.json()).then((data) => setCategories(data))
@@ -35,7 +41,7 @@ export default function Products({ handleCart }) {
     }
 
     useEffect(() => {
-        getProducts();
+        // getProducts();
         getCategories();
     }, [])
 
@@ -51,7 +57,7 @@ export default function Products({ handleCart }) {
             <Nav />
             <div className='products text-center'>
                 {
-                    products.length === 0
+                    isLoading
                         ?
 
                         <Spinner animation="border" role="status">
@@ -75,14 +81,14 @@ export default function Products({ handleCart }) {
                             </div>
                             <>
                                 <div className="category">
-                                    <button className='bg-dark' onClick={getProducts}>All</button>
+                                    {/* <button className='bg-dark' onClick={getProducts}>All</button> */}
                                     {
                                         categories.map((category, index) =>
                                             <button className='bg-dark' onClick={() => productFilter(category)} key={index}>{category}</button>
                                         )
                                     }
                                 </div>
-                                <ProductsComponent handleCart={handleCart} products={products} getProducts={getProducts} />
+                                <ProductsComponent handleCart={handleCart} products={products} />
                             </>
                         </>
                 }
