@@ -94,6 +94,7 @@
             }
 
             .info {
+                top: 60%;
                 h1 {
                     font-size: 2rem;
                 }
@@ -109,7 +110,6 @@
 @media (max-width: 400px) {
 
     .products {
-        .title_product {}
 
         .category {
             padding-top: 100px;
