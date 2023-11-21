@@ -2,7 +2,6 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import { Link, NavLink } from 'react-router-dom';
-import Swal from 'sweetalert2'
 import { CartItemCounter } from '../context/CartItemCounter';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../redux/features/cart/cartSlice';
