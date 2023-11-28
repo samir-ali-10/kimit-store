@@ -5,6 +5,8 @@ import { Link, NavLink } from 'react-router-dom';
 import { CartItemCounter } from '../context/CartItemCounter';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../redux/features/cart/cartSlice';
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function ProductsComponent({ products, getProducts }) {
 
@@ -40,10 +42,10 @@ export default function ProductsComponent({ products, getProducts }) {
                         <div className="image">
                             <Card.Img variant="top" loading='lazy' src={product.thumbnail} />
                             <div className="actions">
-                                <Link to={`./edit/${[product.id]}`} className='btn btn-light me-3'>Edit</Link>
-                                <Button className={`btn btn-light me-3`} onClick={() => {
+                                {/* <Link to={`./edit/${[product.id]}`} className='btn btn-light me-3'>Edit</Link> */}
+                                <Button className={`btn btn-dark me-3 add_to_cart`} onClick={() => {
                                     handleAddToCart(product)
-                                }}>Send item to cart</Button>
+                                }}><FontAwesomeIcon icon={faCartPlus} /></Button>
                             </div>
                         </div>
                         <Card.Body className='card_body'>

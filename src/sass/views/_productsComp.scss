@@ -54,6 +54,11 @@
                     cursor: not-allowed;
                     pointer-events: none;
                 }
+
+                .add_to_cart {
+                    color: white;
+                    border: none;
+                }
             }
 
             &:hover .actions {

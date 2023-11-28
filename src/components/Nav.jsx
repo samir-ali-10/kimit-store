@@ -66,24 +66,24 @@ export default function Nav() {
         document.body.classList.remove("rtl");
     }
 
-    
+
     // let getCartItems = () => {
     //     fetch(`http://localhost:1111/cart`).then(res => res.json()).then(data => setItems(data))
     // }
 
     const lang = useSelector(state => state.lang.language)
-    const {cartTotalQuantity} = useSelector((state) => state.cart)
+    const { cartTotalQuantity } = useSelector((state) => state.cart)
     const dispatch = useDispatch()
 
     let data = useContext(PersonData);
 
-    
+
     useEffect(() => {
         localStorage.setItem("lang", lang)
     }, [lang])
-    
+
     return (
-        
+
         <div className={`nav_bar bg-dark ${show === true ? "active" : ""}`}>
             <nav>
                 <h2 className='text-light'>Kimit Store</h2>
@@ -96,9 +96,6 @@ export default function Nav() {
                     </li>
                     <li>
                         <NavLink to="/about">{t("about")}</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/addProduct">{t("add_product")}</NavLink>
                     </li>
                     <li>
                         <button onClick={menuActive} className='bg-info'><FontAwesomeIcon className='text-white' icon={faX} /></button>
